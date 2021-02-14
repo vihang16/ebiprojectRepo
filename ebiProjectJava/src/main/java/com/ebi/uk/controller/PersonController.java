@@ -43,8 +43,7 @@ public class PersonController {
 	@PutMapping("/update/{id}")
     public Person updateUser( @PathVariable(value = "id") Long id, @RequestBody Person person) {
 		//Person p =personRepository.findById(person.getId()).get();
-		Person p = personRepository.findById(id)
-				.orElseThrow();
+		Person p = personRepository.findById(id).orElseThrow();
 		p.setAge(person.getAge());
 		p.setFavoriteColor(person.getFavoriteColor());
 		p.setFirstName(person.getFirstName());

@@ -14,7 +14,6 @@ This project is sample dockerize application using spring-boot
  1. firstName - dumm1, lastName- dumm2, age - 32
  2. firstName - Vihang, lastName- Shah, age -29
  
- I have marked above 3 parameters as mandatory field for creating object.
  
  below are the restriction/grant these 2 users will have
  1. anyone can add Person to dbs.

@@ -1,4 +1,4 @@
-# ebiprojectRepo
+# Sample Project using spring-boot
 
 This project is sample dockerize application using spring-boot
  

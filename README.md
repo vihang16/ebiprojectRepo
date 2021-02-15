@@ -14,7 +14,6 @@ This project is sample dockerize application using spring-boot
  1. firstName - dumm1, lastName- dumm2, age - 32
  2. firstName - Vihang, lastName- Shah, age -29
  
- I have marked above 3 parameters as mandatory field for creating object.
  
  below are the restriction/grant these 2 users will have
  1. anyone can add Person to dbs.
@@ -42,6 +41,7 @@ below are the technologies I have used:
 - Junit-jupiter 5.7.0
 
 How to run and test the project?
+
 As I noticed from [this feature update](https://github.com/docker/for-linux/issues/1102) currently building from git and using from fragment section is not supported yet.so it is unable to create image from github repo.
  alternatively you can git clone the object using below command
  git clone https://github.com/vihang16/ebiprojectRepo.git or you can import project in eclipse using import from git option.

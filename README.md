@@ -9,6 +9,13 @@ This project is sample dockerize application using spring-boot
  1. User
  2. Admin
  
+ and below are the entity objects gets created on start of the project.
+ 
+ 1. firstName - dumm1, lastName- dumm2, age - 32
+ 2. firstName - Vihang, lastName- Shah, age -29
+ 
+ I have marked above 3 parameters as mandatory field for creating object.
+ 
  below are the restriction/grant these 2 users will have
  1. anyone can add Person to dbs.
  2. Update, Delete and retrieve all only admin can do.
@@ -36,4 +43,16 @@ below are the technologies I have used:
 
 How to run and test the project?
 As I noticed from [this feature update](https://github.com/docker/for-linux/issues/1102) currently building from git and using from fragment section is not supported yet.so it is unable to create image from github repo.
+ alternatively you can git clone the object using below command
+ git clone https://github.com/vihang16/ebiprojectRepo.git or you can import project in eclipse using import from git option.
  
+ once project downloads run below commnad to build the project
+ mvn clean install
+ 
+ then in windows to build the docker image for  this jar run below command
+ docker build -t <tagName> <path>
+	
+to start the project run below commnd.
+docker run -dp <your port number>:8080 <tagName used for build>
+I have used alpine:edge open jdk11 as base image for docker run
+

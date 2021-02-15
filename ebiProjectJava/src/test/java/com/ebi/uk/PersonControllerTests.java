@@ -27,6 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ebi.uk.entity.Person;
 import com.ebi.uk.repository.PersonRepository;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")

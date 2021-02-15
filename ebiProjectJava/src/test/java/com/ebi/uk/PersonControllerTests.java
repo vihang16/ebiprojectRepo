@@ -1,13 +1,14 @@
 package com.ebi.uk;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class PersonControllerTests {
     private TestRestTemplate restTemplate;
 
     
-    @Before
+    @BeforeEach
     public void init() {
     	List<Person> list = new ArrayList<>();
         Person p1 = new Person("dumm1", "lastName1",22);
@@ -49,6 +50,12 @@ public class PersonControllerTests {
         list.add(p1);
         when(mockRepository.findAll()).thenReturn(list);
         when(mockRepository.findById(1l)).thenReturn(Optional.of( p1 ));
+        when(mockRepository.save(any(Person.class))).thenAnswer(invocation -> {
+        	  Person person = invocation.getArgument(0);
+        	  // I assume you have an id field
+        	  person.setId(42L);
+        	  return person;
+        	});
     }
 
     
@@ -59,12 +66,14 @@ public class PersonControllerTests {
 	headers.setContentType(MediaType.APPLICATION_JSON);
 
     HttpEntity<Person> httpEntity = new HttpEntity<Person>(p,headers);
-   ResponseEntity<String> response = restTemplate
+   ResponseEntity<Person> response = restTemplate
             .withBasicAuth("user", "password")
-            .postForEntity("/persons/create", httpEntity, String.class);
+            .postForEntity("/persons/create", httpEntity, Person.class);
 
     //ResponseEntity<Person> response = restTemplate.postForEntity(new URI("http://localhost:8080/persons/create"), httpEntity, Person.class);
     assertEquals(HttpStatus.OK, response.getStatusCode());
+    
+    assertEquals(Long.valueOf("42"), response.getBody().getId());
 
     }
     
@@ -79,13 +88,7 @@ public class PersonControllerTests {
     }
     
     @Test
-    public void getPersonsGoodReq() throws Exception {
-		List<Person> list = new ArrayList<>(); 
-		  Person p1 = new Person("dumm1","lastName1",22); 
-		  Person p2 = new Person("dumm2", "lastName2",32);
-		  list.add(p2); list.add(p1); 
-		  when(mockRepository.findAll()).thenReturn(list);
-		 
+    public void getPersonsGoodReq() throws Exception {	 
     ResponseEntity<Person[]> response = restTemplate
             .withBasicAuth("admin", "password")
             .getForEntity("/persons/all", Person[].class);

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.sun.istack.NotNull;
+
 @Entity(name = "Persons")
 
 public class Person implements Serializable{
@@ -31,13 +33,16 @@ public class Person implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "first_name")
-	
+	@NotNull
 	private String firstName;
 	@Column(name = "last_name")
+	@NotNull
 	private String lastName;
 	
 	@Column(name = "favorite_color")
 	private String favoriteColor;
+	
+	@NotNull
 	private int age;
 	public String getFirstName() {
 		return firstName;

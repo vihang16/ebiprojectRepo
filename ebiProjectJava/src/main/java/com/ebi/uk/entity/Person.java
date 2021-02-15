@@ -33,17 +33,16 @@ public class Person implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "first_name")
-	@NotNull
+	
 	private String firstName;
 	@Column(name = "last_name")
-	@NotNull
+	
 	private String lastName;
 	
 	@Column(name = "favorite_color")
 	private String favoriteColor;
 	
-	@NotNull
-	private int age;
+	private Integer age;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -62,10 +61,10 @@ public class Person implements Serializable{
 	public void setFavoriteColor(String favoriteColor) {
 		this.favoriteColor = favoriteColor;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	
